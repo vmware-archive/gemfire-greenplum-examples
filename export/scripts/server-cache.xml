@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    =========================================================================
+    Copyright (c) 2014-2016 Pivotal Software, Inc. All Rights Reserved.
+    This product is protected by U.S. and international copyright
+    and intellectual property laws. Pivotal products are covered by
+    one or more patents listed at http://www.pivotal.io/patents.
+    =========================================================================
+
+-->
+<cache
+		xmlns="http://geode.apache.org/schema/cache"
+		xmlns:gpdb="http://schema.pivotal.io/gemfire/gpdb"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://geode.apache.org/schema/cache http://geode.apache.org/schema/cache/cache-1.0.xsd
+                        http://schema.pivotal.io/gemfire/gpdb http://schema.pivotal.io/gemfire/gpdb/gpdb-2.4.xsd"
+		version="1.0">
+
+	<pdx read-serialized="true" persistent="false">
+		<pdx-serializer>
+			<class-name>org.apache.geode.pdx.ReflectionBasedAutoSerializer</class-name>
+			<parameter name="classes">
+				<string>io.pivotal.gemfire.demo.entity.*</string>
+			</parameter>
+		</pdx-serializer>
+	</pdx>
+
+	<jndi-bindings>
+		<jndi-binding jndi-name="datasource" type="SimpleDataSource"
+			jdbc-driver-class="org.postgresql.Driver" user-name="gpadmin"
+			password="pivotal" connection-url="jdbc:postgresql://localhost:5432/export_db">
+		</jndi-binding>
+	</jndi-bindings>
+	<region name="export">
+		<region-attributes refid="PARTITION">
+			<partition-attributes redundant-copies="1" />
+		</region-attributes>
+		<gpdb:store datasource="datasource">
+			<gpdb:types>
+				<gpdb:pdx name="io.pivotal.gemfire.demo.entity.export"
+					table="export">
+					<gpdb:id field="id" />
+					<gpdb:fields>
+						<gpdb:field name="id" column="id" />
+						<gpdb:field name="value" />
+					</gpdb:fields>
+				</gpdb:pdx>
+			</gpdb:types>
+		</gpdb:store>
+	</region>
+  	<gpdb:gpfdist port="8000" />
+</cache>
+

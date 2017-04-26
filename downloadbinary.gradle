@@ -1,0 +1,57 @@
+plugins {
+    id "de.undercouch.download" version "3.2.0"
+}
+
+Properties properties = new Properties()
+properties.load(project.file('gradle.properties').newDataInputStream())
+def ggconnectorURL = properties.getProperty('gemfire.greenplum.connector.url')
+def ggconnectorMD5 = properties.getProperty('gemfire.greenplum.connector.md5')
+def gemfireURL = properties.getProperty('gemfire.url')
+def gemfireMD5 = properties.getProperty('gemfire.md5')
+def token = properties.getProperty('pivotal.network.token')
+def tokenheader = "Token token=${token}"
+
+import de.undercouch.gradle.tasks.download.Download
+import de.undercouch.gradle.tasks.download.Verify
+
+task printProps {
+    doLast {
+        println "Property[gemfire.url]: ${gemfireURL}"
+    	println "Property[gemfire.greenplum.connector.url]: ${ggconnectorURL}"
+	println "Property[token]: ${token}"
+	println "Property[ggconnectorMD5]: ${ggconnectorMD5}" 
+        println "Property[gemfireMD5]: ${gemfireMD5}"
+
+   }
+}
+
+
+task downloadGemfireFile(type: Download) {
+    src gemfireURL
+    dest new File(buildDir, 'pivotal-gemfire.zip')
+    header 'Accept', 'application/json'
+    header 'Authorization', tokenheader
+
+}
+
+task verifyGemfireFile(type: Verify) {
+    src new File(buildDir, 'pivotal-gemfire.zip')
+    algorithm 'MD5'
+    checksum gemfireMD5
+}
+
+
+task downloadGGCFile(type: Download) {
+    src ggconnectorURL
+    dest new File(buildDir,'gemfire-greenplum-2.4.0.jar')
+    header 'Accept', 'application/json'
+    header 'Authorization', tokenheader
+//    overwrite true
+}
+
+task verifyGGCFile(type: Verify) {
+    src new File(buildDir, 'gemfire-greenplum-2.4.0.jar')
+    algorithm 'MD5'
+    checksum  ggconnectorMD5
+}
+
