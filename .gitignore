@@ -1,9 +1,9 @@
 # Compiled class file
 *.class
-
+.DS_Store
 # Log file
 *.log
-
+*.bin
 
 # Package Files #
 *.jar
@@ -24,4 +24,4 @@ build
 *.iml
 *.ipr
 *.iws
-
+temp/*
