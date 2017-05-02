@@ -1,38 +1,85 @@
-# Gemfire with Gemfire-Greenplum connector examples
+# GemFire and Greenplum with Gemfire-Greenplum connector(GGC) examples
 
-This is the home of Apache Geode examples that are bundled with the project. Contributions<sup>[2]</sup> and corrections are welcome. Please talk to us about your suggestions at [kochan@pivotal.io](mailto:kochan@pivotal.io) 
+This is the home of examples that are bundled with the project. Contributions<sup>[2]</sup> and corrections are welcome. Please talk to us about your suggestions at [kochan@pivotal.io](mailto:kochan@pivotal.io)
 
-## Example requirements
+## Contents
+1. [Overview](#overview)
+2. [How to Get GemFire and GemFire-Greenplum connector](#obtaining)
+3. [How to install GemFire and GemFire-Greenplum connector](#install)
+3. [Examples](#examples)
+4. [Documentation](#documentation)
 
-All examples:
+## <a name="overview"></a>Overview
+[Pivotal Gemfire-Greenplum Connector](https://pivotal.io/pivotal-gemfire) enables users to more easily tackle use cases that require a blend of analytical and transactional processing, such as fraud detection, recommendation and IoT data collection system
 
-*  Need to be testable. Use unit tests, integration tests or whatever is applicable. Tests will run through the project's CI.
-*  Should be `Gradle` projects or part of existing ones. There may be exceptions here.
-*  Should contain a `README.md` file with step-by-step instruction on how to set up and run the example. *Diagrams give you extra credit.*
+Use Cases:
+*  Cache data reads in Gemfire
+*  High speed data ingestion into Greenplum DB
 
-## Structure
+## <a name="obtaining"></a>How to get GemFire and GGC
 
-### Installation and a Tutorial for Beginners
+Please visit Pivotal Network at https://network.pivotal.io for the latest versions of this Pivotal product.
 
-*  [How to Install Gemfire](http://geode.apache.org/docs/guide/getting_started/installation/install_standalone.html)
-*  Set a `GEODE_HOME` environment variable to point to the root directory of the installation; this directory contains `bin/`. For those that have built from source, it will be the `geode-assembly/build/install/apache-geode` directory.
-*  [How to p Greenplum database]
+*  Login to https://network.pivotal.io/
+*  Access GemFire product link at  https://network.pivotal.io/products/pivotal-gemfire
+*  Download Pivotal GemFire zip and GemFire-Greenplum connector
 
-### How to download Pivotal Gemfire and Gemfire-Greenplum connector from Pivotal Network
+## <a name="install"></a>How to install GemFire and GGC (TBD)
 
+* GemFire installation, follow this [link](http://gemfire.docs.pivotal.io/geode/getting_started/installation/install_standalone.html#concept_0129F6A1D0EB42C4A3D24861AF2C5425)
+
+* GemFire-Greenplum connector, follow this [link](http://ggc.docs.pivotal.io/ggc/installation.html)
+
+## <a name="run"></a>How to run docker-compose for this demo (TBD)
+1. Run this command to load docker-compose.yml. This task assumes you have preinstalled docker-compose
+```
+$ docker-compose up
+```
+2. Verify the docker compose processes are running "ok" by following this command
+
+```$ docker-compose ps```
+```
+Name                                   Command                                  State                                   Ports
+--------------------------------------------------------------------------------------------------------------------------------------
+gfgpdbconnectorexamples_gemfire_1       gfsh                                    Up                                      0.0.0.0:10334->10334/tcp,
+                                                                                                        0.0.0.0:1099->1099/tcp,
+                                                                                                        0.0.0.0:40404->40404/tcp,
+                                                                                                        0.0.0.0:7070->7070/tcp,
+                                                                                                        0.0.0.0:8080->8080/tcp
+gfgpdbconnectorexamples_gpdb_1          /bin/sh -c echo "127.0.0.1 ...          Up                                      0.0.0.0:9022->22/tcp,
+                                                                                                        0.0.0.0:40000->40000/tcp,
+                                                                                                        0.0.0.0:40001->40001/tcp,
+                                                                                                        0.0.0.0:40002->40002/tcp,
+                                                                                                        0.0.0.0:5005->5005/tcp,
+                                                                                                        0.0.0.0:5010->5010/tcp,
+                                                                                                        0.0.0.0:5432->5432/tcp
+```
+
+3. You can access GemFire/Geode docker by following the command below.
+
+```$ docker exec -it gfgpdbconnectorexamples_gemfire_1 bin/bash```
+```[root@c74a5dc9c1b1 /]#```
+## <a name="examples"></a>Examples
+
+You can run these examples once you have successfully executed docker-compose.
+
+For example, change your pwd to /code/basic
+```
+
+```
 ### Basics
-
-*  Basic
-*  Export
+*  [Basic](basic/README.md)
+*  [Export](export/README.md)
 
 ### Intermediate
 
-*  Functions
+*  Functions   (TBD)
 *  CacheLoader & CacheWriter
 *  Listeners
 *  Async Event Queues
 *  Off-heap
 
-
-## References
-
+## <a name="documentation"></a>Documentation
+* Greenplum documentation(http://gpdb.docs.pivotal.io/43120/common/welcome.html)
+* Gemfire - gfsh Commands (http://gemfire.docs.pivotal.io/gemfire/tools_modules/gfsh/gfsh_quick_reference.html)
+* Gemfire-GreenPlum connector documentation(http://ggc.docs.pivotal.io/ggc/about_ggc.html)

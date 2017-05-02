@@ -15,6 +15,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
 set -e
 
 current=`pwd`
@@ -25,4 +26,16 @@ cd `dirname $0`
 
 cd $current
 
-gfsh -e "connect --locator=${GEODE_IP}[${GEODE_LOCATOR_PORT}]" -e "shutdown --include-locators=true"
+
+#gfsh -e "connect --locator=localhost[${GEODE_LOCATOR_PORT}]" -e "list members"
+
+gfsh -e "connect --locator=localhost[${GEODE_LOCATOR_PORT}]" -e "list regions"
+
+gfsh -e "connect --locator=localhost[${GEODE_LOCATOR_PORT}]" -e "import gpdb --region=/usertable"
+
+gfsh -e "connect --locator=localhost[${GEODE_LOCATOR_PORT}]" -e "query --query=\"select field0, field1 from /usertable\""
+
+gfsh -e "connect --locator=localhost[${GEODE_LOCATOR_PORT}]" -e "query --query=\"select count(*) from /usertable\""
+
+exit 0
+

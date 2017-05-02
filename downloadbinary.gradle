@@ -34,7 +34,7 @@ task downloadGemfireFile(type: Download) {
 
 }
 
-task verifyGemfireFile(type: Verify) {
+task verifyGemfireFile(type: Verify, dependsOn: ':downloadGemfireFile') {
     src new File(buildDir, 'pivotal-gemfire.zip')
     algorithm 'MD5'
     checksum gemfireMD5

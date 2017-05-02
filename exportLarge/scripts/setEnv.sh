@@ -16,6 +16,6 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 # Customize this settings for custom Greenplum
 #export GREENPLUM_HOST=gfgpdbconnectorexamples_gpdb_1
 #export GREENPLUM_USER=gpadmin
-export GREENPLUM_DB=export_db
+export GREENPLUM_DB=exportlarge_db
 #export GREENPLUM_DB_PWD=pivotal
 #export PGPASSWORD=${GREENPLUM_DB_PWD}

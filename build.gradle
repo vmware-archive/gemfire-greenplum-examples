@@ -29,7 +29,12 @@ subprojects {
 
     dependencies {
         testCompile project(":utils")
-        compile "org.apache.geode:geode-core:$geodeVersion"
+        compile("io.pivotal.gemfire:geode-core:$gemfireVersion")
+        compile("io.pivotal.gemfire:geode-cq:$gemfireVersion")
+        compile("io.pivotal.gemfire:geode-lucene:$gemfireVersion")
+        compile("io.pivotal.gemfire:geode-wan:$gemfireVersion")
+        testCompile "junit:junit:$junitVersion"
+       // compile "org.apache.geode:geode-core:$geodeVersion"
         testCompile "junit:junit:$junitVersion"
         testCompile "org.mockito:mockito-core:$mockitocoreVersion"
         compile "org.apache.commons:commons-exec:$commonsExecVersion"

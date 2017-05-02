@@ -29,22 +29,30 @@
 	<jndi-bindings>
 		<jndi-binding jndi-name="datasource" type="SimpleDataSource"
 			jdbc-driver-class="org.postgresql.Driver" user-name="gpadmin"
-			password="pivotal" connection-url="jdbc:postgresql://gfgpdbconnectorexamples_gpdb_1:5432/basic_db">
+			password="pivotal" connection-url="jdbc:postgresql://gfgpdbconnectorexamples_gpdb_1:5432/exportlarge_db">
 		</jndi-binding>
 	</jndi-bindings>
-	<region name="basic">
+	<region name="usertable">
 		<region-attributes refid="PARTITION">
 			<partition-attributes redundant-copies="1" />
 		</region-attributes>
 		<gpdb:store datasource="datasource">
 			<gpdb:types>
-				<gpdb:pdx name="io.pivotal.gemfire.demo.entity.basic"
-					table="basic">
-					<gpdb:id field="id" />
-					<gpdb:fields>
-						<gpdb:field name="id" column="id" />
-						<gpdb:field name="col1" />
-						<gpdb:field name="col2" class="java.math.BigDecimal" />
+				<gpdb:pdx name="io.pivotal.gemfire.examples.entity.usertable"
+					table="usertable">
+					<gpdb:fields>  
+					 <gpdb:id field="id" />
+						<gpdb:field name="FIELD0" />
+						<gpdb:field name="FIELD1" />
+						<gpdb:field name="FIELD2" />
+						<gpdb:field name="FIELD3" />
+						<gpdb:field name="FIELD4" />
+						<gpdb:field name="FIELD5" />
+						<gpdb:field name="FIELD6" />
+						<gpdb:field name="FIELD7" />
+						<gpdb:field name="FIELD8" />
+						<gpdb:field name="FIELD9" />
+						<gpdb:field name="FIELD10" />
 					</gpdb:fields>
 				</gpdb:pdx>
 			</gpdb:types>
@@ -52,3 +60,4 @@
 	</region>
   	<gpdb:gpfdist port="8000" />
 </cache>
+

@@ -15,6 +15,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
 set -e
 
 current=`pwd`
@@ -25,4 +26,8 @@ cd `dirname $0`
 
 cd $current
 
-gfsh -e "connect --locator=${GEODE_IP}[${GEODE_LOCATOR_PORT}]" -e "shutdown --include-locators=true"
+psql -h ${GREENPLUM_HOST} -U ${GREENPLUM_USER} -d ${GREENPLUM_DB} -c "DROP DATABASE IF EXISTS ${GREENPLUM_DB}"
+
+
+
+

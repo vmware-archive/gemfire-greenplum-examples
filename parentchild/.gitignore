@@ -9,3 +9,5 @@ build
 *.iws
 out
 .idea
+.settings/*
+.classpath

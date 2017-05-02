@@ -1,6 +1,6 @@
 #  Gemfire-Greenplum connector example
 
-This is one of the most basic examples.
+This is one of the most basic examples. 
 Two Gemfire servers host a region.
 GPDB cluster that has two segments with pre-created table "basic"
 
@@ -8,7 +8,7 @@ GPDB cluster that has two segments with pre-created table "basic"
 1. From the ```/basic``` directory, start the docker with GPDB image:
         $ scripts/rundocker.sh
 
-2. From the ```/basic directory, create the database and table in GPDB cluster
+2. From the ```/basic director, create the database and table in GPDB cluster
         $ scripts/setupDB.sh
 
 	Gemfire/Geode version: 9.0.3
@@ -30,7 +30,7 @@ GPDB cluster that has two segments with pre-created table "basic"
 
 	Imported 5 objects in 1.968s.
 
-        ...
+        ... 
 	Result
 	------
 	5
@@ -47,7 +47,7 @@ GPDB cluster that has two segments with pre-created table "basic"
      	5
 	(1 row)
         ...
-
+      
 
 
 
@@ -55,4 +55,5 @@ GPDB cluster that has two segments with pre-created table "basic"
 
         $ scripts/stopAll.sh
 
-This example is a simple demonstration on basic Gemfire-Greenplum connector
+This example is a simple demonstration on basic Gemfire-Greenplum connector 
+
