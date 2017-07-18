@@ -27,17 +27,22 @@ cd `dirname $0`
 cd $current
 
 
-# Checks whether ${GREENPLUM_DB} db exists ?
-if psql -h ${GREENPLUM_HOST} -U ${GREENPLUM_USER} -lqt | cut -d \| -f 1 | grep -qw ${GREENPLUM_DB}; then
-    # database exists
-    # $? is 0
-	psql -h ${GREENPLUM_HOST} -U ${GREENPLUM_USER} -d ${GREENPLUM_DB} -c "DROP DATABASE IF EXISTS ${GREENPLUM_DB}"
+#gfsh -e "connect --locator=localhost[${GEODE_LOCATOR_PORT}]" -e "list members"
 
-else
-    echo "Database ${GREENPLUM_DB} does NOT exists"
-fi
+gfsh -e "connect --locator=localhost[${GEODE_LOCATOR_PORT}]" -e "list regions"
+
+gfsh -e "connect --locator=localhost[${GEODE_LOCATOR_PORT}]" -e "query --query=\"select count(*) from /basicAO\""
 
 
+for N in {1000..100000}
+do
+	gfsh -e "connect --locator=localhost[${GEODE_LOCATOR_PORT}]" -e "put --key=($N) --value=('Hello World!!') --region=/basicAO"
+done
 
+
+
+gfsh -e "connect --locator=localhost[${GEODE_LOCATOR_PORT}]" -e "query --query=\"select count(*) from /basicAO\""
+
+exit 0
 
 

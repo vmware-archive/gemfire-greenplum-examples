@@ -1,12 +1,15 @@
 #  Gemfire-Greenplum connector example
 
-This is one of the most basic examples.
-Two Gemfire servers host a region.
-GPDB cluster that has two segments with pre-created table "basic"
+This basic example demonstrates how to run GemFire-Greenplum connector.
+
+The setup consists of GemFire and Greenplum DB (GPDB) cluster.
+
+- Two GemFire servers host a region.
+- GPDB cluster that has two segments with pre-created table "basic"
 
 ## Steps
-1. From the ```/basic``` directory, start the docker with GPDB image:
-        $ scripts/rundocker.sh
+1. From the `````` directory, start the dockers with both GPDB and GemFire cluster:
+        $ docker-compose up
 
 2. From the ```/basic directory, create the database and table in GPDB cluster
         $ scripts/setupDB.sh

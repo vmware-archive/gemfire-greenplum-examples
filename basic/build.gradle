@@ -29,14 +29,7 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-//	compile fileTree(dir: '..\\libs', include: ['*.jar'])
-	compile("io.pivotal.gemfire.gpdb:gemfire-greenplum-2.4.1")
-	  // GemFire
-    	compile("io.pivotal.gemfire:geode-core:$gemfireVersion")
-	compile("io.pivotal.gemfire:geode-cq:$gemfireVersion")
-	compile("io.pivotal.gemfire:geode-lucene:$gemfireVersion")
-	compile("io.pivotal.gemfire:geode-wan:$gemfireVersion")
-  	testCompile "junit:junit:$junitVersion"
+
 
 }
 
