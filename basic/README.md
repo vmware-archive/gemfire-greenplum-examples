@@ -8,11 +8,13 @@ The setup consists of GemFire and Greenplum DB (GPDB) cluster.
 - GPDB cluster that has two segments with pre-created table "basic"
 
 ## Steps
-1. From the `````` directory, start the dockers with both GPDB and GemFire cluster:
-        $ docker-compose up
-
-2. From the ```/basic directory, create the database and table in GPDB cluster
-        $ scripts/setupDB.sh
+1. From the ```gemfire-greenplum-examples``` directory, start the dockers with both GPDB and GemFire cluster:
+```
+    $ docker-compose up
+```
+2. From the ```/basic``` directory, create the database and table in GPDB cluster
+```   
+    $ scripts/setupDB.sh
 
 	Gemfire/Geode version: 9.0.3
 	psql:./sample_table.sql:1: NOTICE:  table "basic" does not exist, skipping
@@ -20,13 +22,13 @@ The setup consists of GemFire and Greenplum DB (GPDB) cluster.
 	CREATE TABLE
 	INSERT 0 1
 	...
-
+```
 3. From the ```/basic``` directory, start the locator and two servers:
-
+```
         $ scripts/startAll.sh
-
+```
 2. Run the the import script:
-
+```
         $ scripts/importFromGPDB.sh
         ...
 	(2) Executing - import gpdb --region=/basic
@@ -37,9 +39,9 @@ The setup consists of GemFire and Greenplum DB (GPDB) cluster.
 	Result
 	------
 	5
-
+```
 3. Run the export script:
-
+```
         $ scripts/exportToGPDB.sh
         ...
 	(2) Executing - export gpdb --region=/basic --type=UPSERT
@@ -50,12 +52,10 @@ The setup consists of GemFire and Greenplum DB (GPDB) cluster.
      	5
 	(1 row)
         ...
-
-
-
-
+```
 6. Shutdown the system:
-
+```
         $ scripts/stopAll.sh
+```
 
-This example is a simple demonstration on basic Gemfire-Greenplum connector
+This example is a simple demonstration on basic Gemfire-Greenplum connector.
