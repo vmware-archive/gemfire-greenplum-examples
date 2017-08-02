@@ -10,14 +10,11 @@ This readme describes how to use script to automatically download binaries from 
 
 ## <a name="pre-requisites"></a>Pre-requisites
 
-- You need to have an account with Pivotal Network.
-- You need to provide your API token applicable.
- 1. Log on to network.pivotal.io.
- 2. Click on your name tab and select "Edit Profile" to get your "API TOKEN" keys.
+- Pivotal Network account.
+- API token associated to your Pivotal Network account.
 - Gradle preinstalled on your system
 
 ## <a name="configure"></a>How to configure script
-
 ### Configure the script
 -  Edit gradle.properties file in the root folder.
 -  Replace the "REPLACE_ME" in this pivotal.network.token with your API Token that is provided by Pivotal Network.
