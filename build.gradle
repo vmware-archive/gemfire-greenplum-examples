@@ -1,19 +1,12 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
- * this work for additional information regarding copyright ownership.
- * The ASF licenses this file to You under the Apache License, Version 2.0
- * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- :* limitations under the License.
- */
+plugins {
+    id "org.nosphere.apache.rat" version "0.3.0"
+    id "com.diffplug.gradle.spotless" version "3.0.0"
+    id "de.undercouch.download" version "3.1.2"
+}
+
+def downloadFile = "apache-geode-${geodeVersion}.tar.gz"
+def installFile = "$buildDir/$downloadFile"
+def installDir = "$buildDir/apache-geode-${geodeVersion}"
 
 subprojects {
 
@@ -28,17 +21,16 @@ subprojects {
     }
 
     dependencies {
+        compile "org.apache.geode:geode-core:$geodeVersion"
+        compile "org.apache.commons:commons-exec:$commonsExecVersion"
+        runtime "org.slf4j:slf4j-log4j12:$slf4jVersion"
+
+        testCompile "com.jayway.awaitility:awaitility:$awaitilityVersion"
         testCompile project(":utils")
-        compile("io.pivotal.gemfire:geode-core:$gemfireVersion")
-        compile("io.pivotal.gemfire:geode-cq:$gemfireVersion")
-        compile("io.pivotal.gemfire:geode-lucene:$gemfireVersion")
-        compile("io.pivotal.gemfire:geode-wan:$gemfireVersion")
-        testCompile "junit:junit:$junitVersion"
-       // compile "org.apache.geode:geode-core:$geodeVersion"
         testCompile "junit:junit:$junitVersion"
         testCompile "org.mockito:mockito-core:$mockitocoreVersion"
-        compile "org.apache.commons:commons-exec:$commonsExecVersion"
-        compile "com.jayway.awaitility:awaitility:$awaitilityVersion"
+
+
     }
 
     task run(type: JavaExec) {
@@ -53,11 +45,4 @@ subprojects {
         }
     }
 
-    test {
-      def geodeHome = System.getenv('GEODE_HOME');
-      geodeHome = geodeHome != null ? geodeHome : file('../../geode-assembly/build/install/apache-geode/').absolutePath
-      environment 'GEODE_HOME': geodeHome
-    }
-
 }
-

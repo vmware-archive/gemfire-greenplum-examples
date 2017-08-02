@@ -1,14 +1,54 @@
-# Geode replicated region example
+# GemFire-Greenplum connector example
 
-This is one of the most basic examples. 
-Two servers host a replicated region.
-The producer puts 50 entries into the replicated region. The consumer prints the number of entries in the region.
+This example demonstrates the export operations that are available.
+
+An export copies entries from a Pivotal GemFire® region to a Pivotal Greenplum® (GPDB) table.
+
+The export operation implements the functionality of one of these:
+
+- The UPSERT functionality updates a GPDB row if the GemFire entry to be exported is already present as a GPDB row. If the GPDB row does not already exist, a new row is inserted.
+- The INSERT_ALL functionality does a GPDB insert operation for each region entry in the GemFire region. Since it does not check for the existence of GPDB rows prior to each insert, the export operation will fail and throw an error if a duplicate primary key already exists in the GPDB table.
+- The INSERT_MISSING functionality inserts rows into the GPDB table for GemFire region entries that are not already present in the table. It does not update any existing rows in the GPDB table.
+- The UPDATE functionality updates a GPDB row if the GemFire entry to be exported is already present as a GPDB row.
+
+You can refer to [GemFire-Greenplum documentation](http://ggc.docs.pivotal.io/ggc/toGreenplum.html)
+
 
 ## Steps
-1. From the ```geode-examples/replicated``` directory, start the locator and two servers:
+1. From the ```gemfire-greenplum-examples``` directory, start the dockers with both GPDB and GemFire cluster:
+```
+    $ docker-compose up
+    Creating network "gemfiregreenplumexamples_default" with the default driver
+    Creating gemfiregreenplumexamples_gemfire_1 ...
+    Creating gemfiregreenplumexamples_gemfire_1 ... done
+    Creating gemfiregreenplumexamples_gpdb_1 ...
+    Creating gemfiregreenplumexamples_gpdb_1 ... done
+    ...
+```
+2. From the ```/export``` directory, create the database and table in GPDB cluster
+```   
+    $ scripts/setupDB.sh
 
+        Gemfire/Geode version: 9.0.3
+        psql:./sample_table.sql:1: NOTICE:  table "export" does not exist, skipping
+        DROP TABLE
+        CREATE TABLE
+        INSERT 0 1
+        ...
+```
+
+
+        Gemfire/Geode version: 9.0.3
+        psql:./sample_table.sql:1: NOTICE:  table "basic" does not exist, skipping
+        DROP TABLE
+        CREATE TABLE
+        INSERT 0 1
+        ...
+
+1. From the ```gemfire-greenplum-examples/export``` directory, start the locator and two servers:
+```
         $ scripts/startAll.sh
-
+```
 2. Run the producer:
 
         $ gradle run -Pmain=Producer

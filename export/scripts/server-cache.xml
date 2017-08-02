@@ -29,7 +29,7 @@
 	<jndi-bindings>
 		<jndi-binding jndi-name="datasource" type="SimpleDataSource"
 			jdbc-driver-class="org.postgresql.Driver" user-name="gpadmin"
-			password="pivotal" connection-url="jdbc:postgresql://localhost:5432/export_db">
+			password="pivotal" connection-url="jdbc:postgresql://gemfiregreenplumexamples_gpdb_1:5432/export_db">
 		</jndi-binding>
 	</jndi-bindings>
 	<region name="export">

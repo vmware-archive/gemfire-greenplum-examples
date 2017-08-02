@@ -15,3 +15,14 @@ insert into export (value) select value from export;
 insert into export (value) select value from export;
 insert into export (value) select value from export;
 
+insert into export (value) select value from export;
+insert into export (value) select value from export;
+insert into export (value) select value from export;
+insert into export (value) select value from export;
+insert into export (value) select value from export;
+
+insert into export (value) select value from export;
+insert into export (value) select value from export;
+insert into export (value) select value from export;
+insert into export (value) select value from export;
+insert into export (value) select value from export;

@@ -4,7 +4,7 @@
 # Log file
 *.log
 *.bin
-
+*.classpath
 # Package Files #
 *.jar
 *.war
@@ -24,4 +24,5 @@ build
 *.iml
 *.ipr
 *.iws
+*.idea
 temp/*

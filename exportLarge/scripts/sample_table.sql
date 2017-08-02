@@ -1,5 +1,4 @@
 drop table if exists usertable;
-
 CREATE TABLE usertable (
 	id    SERIAL PRIMARY KEY,
     YCSB_KEY VARCHAR(255),
@@ -58,17 +57,3 @@ CREATE TABLE usertable (
     ) DISTRIBUTED BY (id);
 
 
-/*
-INSERT INTO sampletext50 VALUES (1, 'PK_1',  1);
-INSERT INTO sampletext50 VALUES (2, 'PK_2',  2);
-INSERT INTO sampletext50 VALUES (4, 'PK_3',  3);
-INSERT INTO sampletext50 VALUES (5, 'PK_4',  4);
-INSERT INTO sampletext50 VALUES (6, 'PK_5',  5);
-
-
-insert into sampletext50 (FIELD0) select FIELD0 from sampletext50;
-insert into sampletext50 (FIELD1) select FIELD1 from sampletext50;
-insert into sampletext50 (FIELD2) select FIELD2 from sampletext50;
-insert into sampletext50 (FIELD3) select FIELD3 from sampletext50;
-insert into sampletext50 (FIELD4) select FIELD4 from sampletext50;
-*/

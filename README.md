@@ -1,6 +1,6 @@
 # GemFire and Greenplum with Gemfire-Greenplum connector(GGC) examples
 
-This is the home of examples that are bundled with the project. Contributions<sup>[2]</sup> and corrections are welcome. Please talk to us about your suggestions at [kochan@pivotal.io](mailto:kochan@pivotal.io)
+This is the home of examples that are bundled with the project. Contributions<sup>[2]</sup> and corrections are welcome. Please send your questions/suggestions to [kochan@pivotal.io](mailto:kochan@pivotal.io)
 
 ## Contents
 1. [Overview](#overview)
@@ -32,52 +32,30 @@ Please visit Pivotal Network at https://network.pivotal.io for the latest versio
 
 ## <a name="run"></a>How to run docker-compose for this demo (TBD)
 1. Run this command to load docker-compose.yml. This task assumes you have preinstalled docker-compose
-```
-$ docker-compose up
-```
+`$ docker-compose up`
+
 2. Verify the docker compose processes are running "ok" by following this command
-
-```$ docker-compose ps```
-```
-Name                                   Command                                  State                                   Ports
---------------------------------------------------------------------------------------------------------------------------------------
-gfgpdbconnectorexamples_gemfire_1       gfsh                                    Up                                      0.0.0.0:10334->10334/tcp,
-                                                                                                        0.0.0.0:1099->1099/tcp,
-                                                                                                        0.0.0.0:40404->40404/tcp,
-                                                                                                        0.0.0.0:7070->7070/tcp,
-                                                                                                        0.0.0.0:8080->8080/tcp
-gfgpdbconnectorexamples_gpdb_1          /bin/sh -c echo "127.0.0.1 ...          Up                                      0.0.0.0:9022->22/tcp,
-                                                                                                        0.0.0.0:40000->40000/tcp,
-                                                                                                        0.0.0.0:40001->40001/tcp,
-                                                                                                        0.0.0.0:40002->40002/tcp,
-                                                                                                        0.0.0.0:5005->5005/tcp,
-                                                                                                        0.0.0.0:5010->5010/tcp,
-                                                                                                        0.0.0.0:5432->5432/tcp
-```
-
+`$ docker-compose ps`
+`
+Name                             Command               State                                                                                     Ports
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+gemfiregreenplumexamples_gemfire_1   gfsh                             Up      0.0.0.0:10334->10334/tcp, 0.0.0.0:1099->1099/tcp, 0.0.0.0:40404->40404/tcp, 0.0.0.0:7070->7070/tcp, 0.0.0.0:8080->8080/tcp
+gemfiregreenplumexamples_gpdb_1      /bin/sh -c echo "127.0.0.1 ...   Up      0.0.0.0:9022->22/tcp, 0.0.0.0:40000->40000/tcp, 0.0.0.0:40001->40001/tcp, 0.0.0.0:40002->40002/tcp, 0.0.0.0:5005->5005/tcp, 0.0.0.0:5010->5010/tcp, 0.0.0.0:5432->5432/tcp
+`
 3. You can access GemFire/Geode docker by following the command below.
+`$ docker exec -it gemfiregreenplumexamples_gemfire_1 bin/bash`
 
-```$ docker exec -it gfgpdbconnectorexamples_gemfire_1 bin/bash```
-```[root@c74a5dc9c1b1 /]#```
+4. Use another shell, in order to execute the Greenplum docker
+`$ docker exec -it gemfiregreenplumexamples_gpdb_1 bin/bash`
+
 ## <a name="examples"></a>Examples
-
 You can run these examples once you have successfully executed docker-compose.
+For example, follow the example-[Basic](basic/README.md)
 
-For example, change your pwd to /code/basic
-```
-
-```
 ### Basics
 *  [Basic](basic/README.md)
 *  [Export](export/README.md)
 
-### Intermediate
-
-*  Functions   (TBD)
-*  CacheLoader & CacheWriter
-*  Listeners
-*  Async Event Queues
-*  Off-heap
 
 ## <a name="documentation"></a>Documentation
 * Greenplum documentation(http://gpdb.docs.pivotal.io/43120/common/welcome.html)

@@ -31,11 +31,11 @@ cd $current
 
 gfsh -e "connect --locator=localhost[${GEODE_LOCATOR_PORT}]" -e "list regions"
 
-gfsh -e "connect --locator=localhost[${GEODE_LOCATOR_PORT}]" -e "import gpdb --region=/basic"
+gfsh -e "connect --locator=localhost[${GEODE_LOCATOR_PORT}]" -e "import gpdb --region=/export --type=INSERT_ALL"
 
-gfsh -e "connect --locator=localhost[${GEODE_LOCATOR_PORT}]" -e "query --query=\"select id.toString() as id, col1, col2 from /basic\""
+gfsh -e "connect --locator=localhost[${GEODE_LOCATOR_PORT}]" -e "query --query=\"select id.toString() as id from /export\""
 
-gfsh -e "connect --locator=localhost[${GEODE_LOCATOR_PORT}]" -e "query --query=\"select count(*) from /basic\""
+gfsh -e "connect --locator=localhost[${GEODE_LOCATOR_PORT}]" -e "query --query=\"select count(*) from /export\""
 
 exit 0
 

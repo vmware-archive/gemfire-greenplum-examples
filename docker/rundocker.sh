@@ -5,7 +5,7 @@
 # 5005 : java debug port
 # 5010 : jmx connection port
 # Docker image from :https://hub.docker.com/r/pivotaldata/gpdb-base/
-# 
+#
 # User: gpadmin Password: pivotal
 #
 # or root/pivotal
@@ -23,7 +23,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 	hostip=$(ip route show | awk '/default/ {print $3}')
 	echo "Host IP in the docker bridge: $hostip"
 
-	echo "Setting firewall rule to permit access toany ports on the host from docker container"
+	echo "Setting firewall rule to permit access to any ports on the host from docker container"
 	sudo iptables -A INPUT -i docker0 -j ACCEPT
 elif [[ "$OSTYPE" == "darwin"* ]]; then
         # Mac OSX
@@ -45,4 +45,3 @@ docker run -t -i --rm=true \
    -p 40001:40001 \
    -p 40002:40002 \
    pivotaldata/gpdb-base
- 
