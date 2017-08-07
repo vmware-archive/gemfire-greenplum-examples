@@ -1,4 +1,4 @@
-# GemFire and Greenplum with Gemfire-Greenplum connector(GGC) examples
+# GemFire and Greenplum with GemFire-Greenplum connector(GGC) examples
 
 This is the home of examples that are bundled with the project. Contributions<sup>[2]</sup> and corrections are welcome. Please send your questions/suggestions to [kochan@pivotal.io](mailto:kochan@pivotal.io)
 
@@ -10,10 +10,10 @@ This is the home of examples that are bundled with the project. Contributions<su
 4. [Documentation](#documentation)
 
 ## <a name="overview"></a>Overview
-[Pivotal Gemfire-Greenplum Connector](https://pivotal.io/pivotal-gemfire) enables users to more easily tackle use cases that require a blend of analytical and transactional processing, such as fraud detection, recommendation and IoT data collection system
+[Pivotal GemFire-Greenplum Connector](https://pivotal.io/pivotal-gemfire) enables users to more easily tackle use cases that require a blend of analytical and transactional processing, such as fraud detection, recommendation and IoT data collection system
 
 Use Cases:
-*  Cache data reads in Gemfire
+*  Cache data reads in GemFire
 *  High speed data ingestion into Greenplum DB
 
 ## <a name="obtaining"></a>How to get GemFire and GGC
@@ -78,4 +78,4 @@ For example, follow the example-[Basic](basic/README.md)
 ## <a name="documentation"></a>Documentation
 * Greenplum documentation(http://gpdb.docs.pivotal.io/43120/common/welcome.html)
 * GemFire - gfsh Commands (http://gemfire.docs.pivotal.io/gemfire/tools_modules/gfsh/gfsh_quick_reference.html)
-* GemFire-GreenPlum connector documentation(http://ggc.docs.pivotal.io/ggc/about_ggc.html)
+* GemFire-Greenplum connector documentation(http://ggc.docs.pivotal.io/ggc/about_ggc.html)

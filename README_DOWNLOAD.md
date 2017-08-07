@@ -87,5 +87,5 @@ verifyGGCFile
 
 ## <a name="documentation"></a>Documentation
 * Greenplum documentation(http://gpdb.docs.pivotal.io/43120/common/welcome.html)
-* Gemfire - gfsh Commands (http://gemfire.docs.pivotal.io/gemfire/tools_modules/gfsh/gfsh_quick_reference.html)
-* Gemfire-GreenPlum connector documentation(http://ggc.docs.pivotal.io/ggc/about_ggc.html)
+* GemFire - gfsh Commands (http://gemfire.docs.pivotal.io/gemfire/tools_modules/gfsh/gfsh_quick_reference.html)
+* GemFire-Greenplum connector documentation(http://ggc.docs.pivotal.io/ggc/about_ggc.html)

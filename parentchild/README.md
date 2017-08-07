@@ -1,7 +1,7 @@
-#  Gemfire-Greenplum connector example
+#  GemFire-Greenplum connector example
 
-This is one of the most basic examples. 
-Two Gemfire servers host a region.
+This is one of the most basic examples.
+Two GemFire servers host a region.
 GPDB cluster that has two segments with pre-created table "basic"
 
 ## Steps
@@ -11,7 +11,7 @@ GPDB cluster that has two segments with pre-created table "basic"
 2. From the ```/basic director, create the database and table in GPDB cluster
         $ scripts/setupDB.sh
 
-	Gemfire/Geode version: 9.0.3
+	GemFire/Geode version: 9.0.3
 	psql:./sample_table.sql:1: NOTICE:  table "basic" does not exist, skipping
 	DROP TABLE
 	CREATE TABLE
@@ -55,5 +55,5 @@ GPDB cluster that has two segments with pre-created table "basic"
 
         $ scripts/stopAll.sh
 
-This example is a simple demonstration on basic Gemfire-Greenplum connector 
+This example is a simple demonstration on basic GemFire-Greenplum connector
 

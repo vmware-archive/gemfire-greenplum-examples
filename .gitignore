@@ -26,3 +26,6 @@ build
 *.iws
 *.idea
 temp/*
+
+# JDT-specific (Eclipse Java Development Tools)		
+.classpath

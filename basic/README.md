@@ -1,4 +1,4 @@
-#  Gemfire-Greenplum connector example
+#  GemFire-Greenplum connector example
 
 This basic example demonstrates how to run GemFire-Greenplum connector.
 
@@ -94,4 +94,4 @@ classpath when the script starts the servers. Also, you can verify the "basic" a
         $ scripts/stopAll.sh
 ```
 
-This example is a simple demonstration for Gemfire-Greenplum connector.
+This example is a simple demonstration for GemFire-Greenplum connector.

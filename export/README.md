@@ -29,7 +29,7 @@ You can refer to [GemFire-Greenplum documentation](http://ggc.docs.pivotal.io/gg
 ```   
     $ scripts/setupDB.sh
 
-        Gemfire/Geode version: 9.0.3
+        GemFire/Geode version: 9.0.3
         psql:./sample_table.sql:1: NOTICE:  table "export" does not exist, skipping
         DROP TABLE
         CREATE TABLE
@@ -38,7 +38,7 @@ You can refer to [GemFire-Greenplum documentation](http://ggc.docs.pivotal.io/gg
 ```
 
 
-        Gemfire/Geode version: 9.0.3
+        GemFire/Geode version: 9.0.3
         psql:./sample_table.sql:1: NOTICE:  table "basic" does not exist, skipping
         DROP TABLE
         CREATE TABLE
