@@ -1,0 +1,27 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+
+repositories {
+   flatDir {
+       dirs '../libs'
+   }
+   mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+
+
+}
+
+sourceSets.test {
+  resources.srcDirs = ["${projectDir}/scripts"]
+}
+
+task cleanGFSH(type: Exec) {
+  executable "sh"
+  args "-c", "rm -rf ./locator1;rm -rf ./server1;rm -rf ./server2"
+}

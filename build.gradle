@@ -1,0 +1,58 @@
+plugins {
+    id "org.nosphere.apache.rat" version "0.3.0"
+    id "com.diffplug.gradle.spotless" version "3.0.0"
+    id "de.undercouch.download" version "3.1.2"
+}
+
+def downloadFile = "apache-geode-${geodeVersion}.tar.gz"
+def installFile = "$buildDir/$downloadFile"
+def installDir = "$buildDir/apache-geode-${geodeVersion}"
+
+subprojects {
+
+    apply plugin:'java'
+
+    repositories {
+        mavenLocal()
+        maven {
+            url "https://repository.apache.org/content/repositories/snapshots/"
+        }
+        mavenCentral()
+    }
+
+    dependencies {
+        compile "org.apache.geode:geode-core:$geodeVersion"
+        compile "org.apache.commons:commons-exec:$commonsExecVersion"
+        runtime "org.slf4j:slf4j-log4j12:$slf4jVersion"
+
+        testCompile "com.jayway.awaitility:awaitility:$awaitilityVersion"
+        testCompile project(":utils")
+        testCompile "junit:junit:$junitVersion"
+        testCompile "org.mockito:mockito-core:$mockitocoreVersion"
+
+
+    }
+
+    task run(type: JavaExec, dependsOn: build) {
+      description = 'Run example'
+      classpath = sourceSets.main.runtimeClasspath
+      main = "io.pivotal.gemfire.examples.${project.name}.Example"
+    }
+
+
+    /* gradle runEx -pmain=xxxx  -pargs=xxx */
+    task runEx(type: JavaExec) {
+            description = 'Run example'
+            def mainClass = rootProject.hasProperty('main') ? "${rootProject.getProperty('main')}" : 'Main'
+            main = "io.pivotal.gemfire.examples.${project.name}.$mainClass"
+            classpath = sourceSets.main.runtimeClasspath
+            standardInput = System.in
+            systemProperties = System.getProperties()
+            if (rootProject.hasProperty('args')) {
+                args = ["${rootProject.getProperty('args')}"]
+                }
+    }
+
+
+
+}

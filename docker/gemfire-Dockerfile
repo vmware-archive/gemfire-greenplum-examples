@@ -1,0 +1,91 @@
+FROM centos:7
+MAINTAINER Apache Geode Community <dev@geode.apache.org>
+
+LABEL Vendor="Apache Geode"
+LABEL version=1.1.1
+
+RUN	yum install -y wget which tar git java-1.8.0-openjdk-devel \
+	&& git clone https://github.com/apache/incubator-geode.git \
+	&& cd incubator-geode \
+	&& git checkout rel/v1.1.1 \
+	&& ./gradlew build -Dskip.tests=true -xjavadoc \
+	&& ls /incubator-geode | grep -v geode-assembly | xargs rm -rf \
+	&& rm -rf /root/.gradle/ \
+	&& rm -rf /incubator-geode/geode-assembly/build/distributions/ \
+	&& rm -rf /usr/share/locale/* \
+	&& yum remove -y perl \
+	&& yum clean all
+# Install psql, createDB
+RUN     yum install -y postgresql
+# Install network tools - netstat
+RUN     yum install -y net-tools
+ENV GEODE_HOME /incubator-geode/geode-assembly/build/install/apache-geode
+ENV PATH $PATH:$GEODE_HOME/bin
+
+######################################################################################
+# Install JDK
+ENV JAVA_VERSION 8u31
+ENV BUILD_VERSION b13
+
+# Upgrading system
+RUN yum -y upgrade
+RUN yum -y install wget
+RUN yum -y install unzip
+# Downloading Java
+RUN wget --no-cookies --no-check-certificate --header "Cookie: oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/$JAVA_VERSION-$BUILD_VERSION/jdk-$JAVA_VERSION-linux-x64.rpm" -O /tmp/jdk-8-linux-x64.rpm
+
+RUN yum -y install /tmp/jdk-8-linux-x64.rpm
+
+RUN alternatives --install /usr/bin/java jar /usr/java/latest/bin/java 200000
+RUN alternatives --install /usr/bin/javaws javaws /usr/java/latest/bin/javaws 200000
+RUN alternatives --install /usr/bin/javac javac /usr/java/latest/bin/javac 200000
+
+ENV JAVA_HOME /usr/java/latest
+######################################################################################
+
+# Include Gradle
+CMD ["gradle"]
+
+ENV GRADLE_HOME /opt/gradle
+ENV GRADLE_VERSION 3.5
+
+ARG GRADLE_DOWNLOAD_SHA256=0b7450798c190ff76b9f9a3d02e18b33d94553f708ebc08ebe09bdf99111d110
+RUN set -o errexit -o nounset \
+	&& echo "Downloading Gradle" \
+	&& wget --no-verbose --output-document=gradle.zip "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" \
+	\
+	&& echo "Checking download hash" \
+	&& echo "${GRADLE_DOWNLOAD_SHA256} *gradle.zip" | sha256sum --check - \
+	\
+	&& echo "Installing Gradle" \
+	&& unzip gradle.zip \
+	&& rm gradle.zip \
+	&& mv "gradle-${GRADLE_VERSION}" "${GRADLE_HOME}/" \
+	&& ln --symbolic "${GRADLE_HOME}/bin/gradle" /usr/bin/gradle \
+	\
+	&& echo "Adding gradle user and group" \
+	&& groupadd --system --gid 1000 gradle \
+	&& useradd --system --gid gradle --uid 1000 --shell /bin/bash --create-home gradle \
+	&& mkdir /home/gradle/.gradle \
+	&& chown --recursive gradle:gradle /home/gradle
+
+
+# Create Gradle volume
+USER gradle
+VOLUME "/home/gradle/.gradle"
+WORKDIR /home/gradle
+
+RUN gradle --version
+
+#Use root
+USER root
+
+# Default ports:
+# RMI/JMX 1099
+# REST 8080
+# PULE 7070
+# LOCATOR 10334
+# CACHESERVER 40404
+EXPOSE  8080 10334 40404 1099 7070
+VOLUME ["/data/"]
+CMD ["gfsh"]

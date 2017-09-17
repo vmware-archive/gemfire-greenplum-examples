@@ -1,0 +1,3 @@
+rootProject.name = 'gemfire-greenplum-examples'
+
+include 'utils'
