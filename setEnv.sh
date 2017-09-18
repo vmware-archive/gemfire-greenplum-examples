@@ -9,9 +9,14 @@ CLASSLIB_PATH="$DIR/libs"\
 GGC_JAR="gemfire-greenplum-3.0.0.jar"
 
 export CLASSPATH=$CLASSPATH:$CLASSLIB_PATH/$GGC_JAR
-export GEMFIRE_HOME=$CLASSLIB_PATH/pivotal-gemfire-9.1.0
-export GEODE_HOME=$GEMFIRE_HOME
-#echo "GEMFIRE_HOME: " . $GEMFIRE_HOME
+# Change me if you are using Pivotal GemFire
+export GEMFIRE_HOME=$CLASSLIB_PATH/pivotal-gemfire-9.0.0
+if [ ! -f $GEMFIRE_HOME/bin/gfsh ]; then
+   echo "$GEMFIRE_HOME is not configured. Use GEODE_HOME: $GEODE_HOME"
+else
+	export GEODE_HOME=$GEMFIRE_HOME
+fi
+
 
 #echo $CLASSPATH
 ## check if locator port has been set otherwise set to default
