@@ -30,7 +30,7 @@ Please visit Pivotal Network at https://network.pivotal.io for the latest versio
 
 * GemFire-Greenplum connector, follow this [link](http://ggc.docs.pivotal.io/ggc/installation.html)
 
-Or you can use this [script]](README_DOWNLOAD.md) to automatically download those binaries from Pivotal Network.
+Or you can use this [script](README_DOWNLOAD.md) to automatically download those binaries from Pivotal Network.
 
 ## <a name="run"></a>How to run docker-compose for this demo (TBD)
 1. Run this command to load docker-compose.yml. This task assumes you have preinstalled docker-compose
